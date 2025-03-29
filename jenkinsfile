@@ -1,0 +1,42 @@
+pipeline{
+
+    
+    agent any
+
+
+    tool{
+        maven 'maven'
+        jdk 'JDK'  
+
+    }
+    
+
+    stages{
+        
+
+            stage('Build'){
+                steps{
+                   bat 'mvn -B -DskipTests clean package'
+                   echo 'Build Completed'
+                }
+            }
+            
+            stage('Test'){
+                steps{
+                    bat 'mvn test'
+                    echo 'Test Completed'
+                }
+            }
+
+
+                
+
+  
+    }
+
+}
+
+
+  
+ 
+
