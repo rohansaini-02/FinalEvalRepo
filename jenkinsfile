@@ -17,7 +17,7 @@ environment {
         
             stage('Build'){
                 steps{
-                   bat 'maven clean package'
+                   bat 'mvn clean package'
                    echo 'Build Completed'
                 }
             }
