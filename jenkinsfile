@@ -1,6 +1,4 @@
-pipeline{
-
-    
+pipeline{ 
     agent any
 
     tools{
@@ -27,12 +25,12 @@ pipeline{
             }
 
 
-                 stage('Deliver') {
-            steps {
-                script { 
-                    sh './scripts/deliver.sh'
-                }
-            }
+             stage('Deliver') {
+                steps {
+                   script { 
+                          bat './scripts/deliver.sh'
+                    }
+                 }
         }
 
   
