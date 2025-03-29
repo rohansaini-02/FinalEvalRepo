@@ -1,16 +1,16 @@
 pipeline{ 
     agent any
 
-    tools{
-        maven 'maven'
-        jdk 'JDK11'
+    // tools{
+    //     maven 'maven'
+    //     jdk 'JDK11'
 
-    }
+    // }
 
-environment {
-    JAVA_HOME = '/path/to/java11'  
-    PATH = "${JAVA_HOME}/bin:${env.PATH}"
-}
+// environment {
+//     JAVA_HOME = '/path/to/java11'  
+//     PATH = "${JAVA_HOME}/bin:${env.PATH}"
+// }
 
 
     stages{
@@ -30,13 +30,13 @@ environment {
             }
 
 
-             stage('Deliver') {
-                steps {
-                   script { 
-                          bat './scripts/deliver.sh'
-                    }
-                 }
-        }
+            //  stage('Deliver') {
+            //     steps {
+            //        script { 
+            //             bat './scripts/deliver.sh'
+            //         }
+            //      }
+            // }
 
   
     }
