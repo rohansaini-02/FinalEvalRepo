@@ -6,7 +6,12 @@ pipeline{
         jdk 'JDK 11'
 
     }
-    
+
+environment {
+    JAVA_HOME = '/path/to/java11'  
+    PATH = "${JAVA_HOME}/bin:${env.PATH}"
+}
+
 
     stages{
         
