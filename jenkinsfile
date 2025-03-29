@@ -3,7 +3,6 @@ pipeline{
     
     agent any
 
-
     tool{
         maven 'maven'
         jdk 'JDK'  
@@ -13,7 +12,6 @@ pipeline{
 
     stages{
         
-
             stage('Build'){
                 steps{
                    bat 'mvn -B -DskipTests clean package'
@@ -29,7 +27,13 @@ pipeline{
             }
 
 
-                
+                 stage('Deliver') {
+            steps {
+                script { 
+                    sh './scripts/deliver.sh'
+                }
+            }
+        }
 
   
     }
