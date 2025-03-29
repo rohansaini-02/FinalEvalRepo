@@ -1,49 +1,78 @@
-pipeline{ 
-    agent any
+// pipeline{ 
+//     agent any
 
+//     tools{
+//         maven 'maven'
+//         jdk 'JDK11'
+
+//     }
+
+// environment {
+//     JAVA_HOME = '/path/to/java11'  
+//     PATH = "${JAVA_HOME}/bin:${env.PATH}"
+// }
+
+
+//     stages{
+        
+//             stage('Build'){
+//                 steps{
+//                    bat 'mvn clean package'
+//                    echo 'Build Completed'
+//                 }
+//             }
+            
+//             stage('Test'){
+//                 steps{
+//                     bat 'mvn test'
+//                     echo 'Test Completed'
+//                 }
+//             }
+
+
+//              stage('Deliver') {
+//                 steps {
+//                    script { 
+//                         bat './scripts/deliver.sh'
+//                     }
+//                  }
+//             }
+
+  
+//     }
+
+// }
+
+
+  
+ pipeline{
+    agent any
     tools{
         maven 'maven'
-        jdk 'JDK11'
-
     }
-
-environment {
-    JAVA_HOME = '/path/to/java11'  
-    PATH = "${JAVA_HOME}/bin:${env.PATH}"
-}
-
-
     stages{
-        
-            stage('Build'){
-                steps{
-                   bat 'mvn clean package'
-                   echo 'Build Completed'
-                }
+
+        stage('Checkout'){
+            steps{
+                git url: 'https://github.com/rohansaini-02/FinalEvalRepo', branch:'master'
+                echo "Checkout Complete"
             }
-            
-            stage('Test'){
-                steps{
-                    bat 'mvn test'
-                    echo 'Test Completed'
-                }
+        }
+        stage('Build'){
+            steps{
+                sh 'mvn -B -DskipTests clean package'
             }
-
-
-             stage('Deliver') {
-                steps {
-                   script { 
-                        bat './scripts/deliver.sh'
-                    }
-                 }
+        }
+        stage('Test'){
+            steps{
+                sh 'mvn test'
             }
-
-  
-    }
-
+        }
+        stage('Deliver'){
+            steps{
+                sh './scripts/deliver.sh'
+            }
+        }
+    }
 }
-
-
-  
- 
 
